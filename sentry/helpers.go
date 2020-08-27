@@ -16,11 +16,10 @@ func Int(v int) *int {
 	return &v
 }
 
-// checkClientGet returns a `found` bool and an `error` to indicate if a Get request was successful.
+// checkClientGet returns a `found` bool.
 // The following return values are meaningful:
 // `true`, `nil` => a resource was successfully found
 // `false`, `nil` => a resource was successfully not found
-// `false`, `err` => encountered an unexpected error
 func checkClientGet(resp *http.Response, err error, d *schema.ResourceData) (bool, error) {
 	if err != nil {
 		if resp != nil && resp.StatusCode == http.StatusNotFound {
