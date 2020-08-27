@@ -1,7 +1,6 @@
 package sentry
 
 import (
-	"errors"
 	"log"
 	"strings"
 
@@ -16,7 +15,8 @@ func resourceSentryRuleImporter(d *schema.ResourceData, meta interface{}) ([]*sc
 	parts := strings.Split(addrID, "/")
 
 	if len(parts) != 3 {
-		return nil, errors.New("Project import requires an ADDR ID of the following schema org-slug/project-slug/rule-id")
+		d.SetId("")
+		return nil, nil
 	}
 
 	d.Set("organization", parts[0])
